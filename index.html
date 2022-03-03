@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Volunteer Form</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Helping Hands Volunteer Application</h1>
+		<p>Thank you so much for your interest in volunteering with Helping Hands United! Please fill out the brief form below to give us a little background information about yourself. One of our volunteer co-ordinators will contact you via email or
+			phone with seven days to discuss the opportunity with you further.</p>
+		<div class="form-container">
+			<form id="vol-form">
+				<div class="form-section">
+					<label for="first-name">First Name:</label>
+					<input id="first-name" name="first-name" type="text">
+				</div>
+				<div class="form-section">
+					<label for="last-name">Last Name:</label>
+					<input id="last-name" name="last-name" type="text">
+				</div>
+				<div class="form-section">
+					<label for="email">Email:</label>
+					<input id="email" name="email" type="email">
+				</div>
+				<div class="form-section">
+					<label for="phone">Phone:</label>
+					<input id="phone" name="phone" type="tel">
+				</div>
+				<div class="form-section">
+					<label for="prev-vol">Past Experience:</label>
+					<input id="prev-vol" name="prev-vol" type="text">
+				</div>
+				<div class="form-section">
+					<label for="from-year" class="from-label">From:</label>
+					<select id="from-year" name="from-year">
+						<option value="blank"></option>
+						<option value="1999">Before 2000</option>
+						<option value="2000">2000</option>
+						<option value="2001">2001</option>
+						<option value="2002">2002</option>
+						<option value="2003">2003</option>
+						<option value="2004">2004</option>
+						<option value="2005">2005</option>
+						<option value="2006">2006</option>
+						<option value="2007">2007</option>
+						<option value="2008">2008</option>
+						<option value="2009">2009</option>
+						<option value="2010">2010</option>
+						<option value="2011">2011</option>
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+					</select>
+					<label for="to-year" class="to-label">To:</label>
+					<select id="to-year" name="to-year">
+						<!--take error out of the hands of the user-->
+						<!--JavaScript has to create an html element, assign it an attribute, define its value, and the text content-->
+					</select>
+				</div>
+				<input id="submit" type="submit" value="Submit">
+			</form>
+		</div>
+	</div>
+	<script>
+		// in this case i is the year
+		var fromYear = document.getElementById('from-year');
+		var toYear = document.getElementById('to-year');
+		var option;
+		var toYearVal;
+		fromYear.onchange = function() { //on change is event listener in javascript instead of html
+			toYearVal = toYear.value;
+			toYear.innerHTML = ''; //innerHTML targets html elements that are inside another element
+			for (var i = fromYear.value; i <= 2017; i++) {
+				//start counter from the year that was picked by user; runs while the value of i is less than or equal to 2017; incrimante (advance by value of 1 everytime the loop is run)
+				option = document.createElement('option'); //creating the option element and assigning it to the variable option
+				//createElement creates a new html element inside the code
+				option.setAttribute('value', i); //adds the attribute "value" to the option element and set it to the variable i
+				option.textContent = i; //adds text to the option variable
+				//writing actual html
+				toYear.appendChild(option); //inserts the variable option into the select element as a child
+				//append means to add, add to a list
+				//remeber html heirarchy!!
+			}
+			//if toYear is greater than or equal to fromYear, the toYear value stays unchanged
+			//the toYear list still changes, but the selected value remains the same
+			if(toYearVal >= fromYear.value){
+				toYear.value = toYearVal;
+			}
+		}
+	</script>
+</body>
+
+</html>
+
+
+<!-- NOTES
+//the paranthesis on a for loop allow you to put other information into the procedure to make it run differently
+	//for for loops you have to define 3 things in the parenthesis
+		for(var i = 0; i < 11; i++){
+			//defining a variable in the paranthesis makes it a local variable, i can only be used in this for loop
+			//1: starts at zero, counter
+			//2: this loop will execute as long as the count is less than 11, when it is no longer less than 11 it stops (limits the loop)
+			//3: double plus sign is an incrament to advance by one (+1 each time)
+			console.log('The value of i is :' + i)
+		}
+-->
